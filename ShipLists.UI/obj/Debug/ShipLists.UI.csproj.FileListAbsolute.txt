@@ -1,0 +1,12 @@
+E:\Project\ShipLists\ShipLists\bin\Debug\ShipLists.exe.config
+E:\Project\ShipLists\ShipLists\bin\Debug\ShipLists.exe
+E:\Project\ShipLists\ShipLists\bin\Debug\ShipLists.pdb
+E:\Project\ShipLists\ShipLists\obj\Debug\ShipLists.UI.csprojResolveAssemblyReference.cache
+E:\Project\ShipLists\ShipLists\obj\Debug\ShipLists.UI.Form1.resources
+E:\Project\ShipLists\ShipLists\obj\Debug\ShipLists.Properties.Resources.resources
+E:\Project\ShipLists\ShipLists\obj\Debug\ShipLists.UI.csproj.GenerateResource.Cache
+E:\Project\ShipLists\ShipLists\obj\Debug\ShipLists.exe
+E:\Project\ShipLists\ShipLists\obj\Debug\ShipLists.pdb
+E:\Project\ShipLists\ShipLists.UI\bin\Debug\ShipLists.exe.config
+E:\Project\ShipLists\ShipLists.UI\obj\Debug\ShipLists.exe
+E:\Project\ShipLists\ShipLists.UI\obj\Debug\ShipLists.pdb
