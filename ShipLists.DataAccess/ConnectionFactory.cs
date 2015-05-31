@@ -1,6 +1,7 @@
 ﻿using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Data.Common;
 using System.Linq;
 using System.Text;
@@ -10,7 +11,7 @@ namespace ShipLists.DataAccess
 {
    public class ConnectionFactory
     {
-       private readonly static string connectionString = "";
+       private readonly static string connectionString = ConfigurationManager.AppSettings["MySQL"];
 
        private static ConnectionFactory connFactory = null;
 
