@@ -7,3 +7,6 @@ git¿â£ºhttps://github.com/xiaoxiwu/ShipLists.git
 
 ¾ßÌå¼û£ºhttp://blog.csdn.net/liuqiaoyu080512/article/details/8618904
 
+mysql server ip:222.222.222.222
+UserInfo:
+ szxy 123456
