@@ -1,0 +1,66 @@
+﻿using System;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Collections.Generic;
+using System.Data.Common;
+
+namespace ShipLists.IDataAccess
+{
+    public interface IBaseDAL
+    {
+        /// <summary>
+        /// 无结果查询，适用于更新、插入以及删除
+        /// </summary>
+        /// <param name="cmdText">sql语句</param>
+        /// <param name="inParms">输入参数</param>
+        /// <returns>受影响行数</returns>
+        public static int ExecuteNoneQuery(String cmdText,Dictionary<int,Object> inParms);
+        /// <summary>
+        /// 执行SQL语句返回查询结果集
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="cmdText"></param>
+        /// <param name="inParms"></param>
+        /// <param name="type">类型对象实例</param>
+        /// <returns></returns>
+        public static List<T> ExecuteQuery<T>(String cmdText, Dictionary<int, Object> inParms, Type type);
+        /// <summary>
+        /// 返回第1行第1列数据，一般用来查询count值
+        /// </summary>
+        /// <param name="cmdtext"></param>
+        /// <param name="inParms"></param>
+        /// <returns></returns>
+        public static Object ExecuteScalar(String cmdtext, Dictionary<int, Object> inParms);
+        /// <summary>
+        /// 执行查询类存储过程,返回结果集
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="cmdText"></param>
+        /// <param name="inParms"></param>
+        /// <param name="outPrarms"></param>
+        /// <param name="type"></param>
+        /// <returns></returns>
+        public static List<T> ExecuteQueryProcedure<T>(String cmdText, Dictionary<int, Object> inParms, Dictionary<int, Object> outPrarms, Type type);
+        /// <summary>
+        /// 执行非查询类存储过程
+        /// </summary>
+        /// <param name="cmdText"></param>
+        /// <param name="inParms"></param>
+        /// <param name="outPrarms"></param>
+        /// <returns></returns>
+        public static int ExecuteNonQueryProcedure(String cmdText, Dictionary<int, Object> inParms, Dictionary<int, Object> outPrarms);
+        /// <summary>
+        /// 添加输入参数
+        /// </summary>
+        /// <param name="sqlCmd"></param>
+        /// <param name="parms"></param>
+        private static void addInParameters(DbCommand sqlCmd, Dictionary<int, Object> parms);
+        /// <summary>
+        /// 添加输出参数
+        /// </summary>
+        /// <param name="sqlCmd"></param>
+        /// <param name="parms"></param>
+        private static void addOutParameters(DbCommand sqlCmd, Dictionary<int, Object> parms); 
+    }
+}
