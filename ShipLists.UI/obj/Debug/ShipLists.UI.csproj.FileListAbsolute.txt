@@ -10,3 +10,6 @@ E:\Project\ShipLists\ShipLists\obj\Debug\ShipLists.pdb
 E:\Project\ShipLists\ShipLists.UI\bin\Debug\ShipLists.exe.config
 E:\Project\ShipLists\ShipLists.UI\obj\Debug\ShipLists.exe
 E:\Project\ShipLists\ShipLists.UI\obj\Debug\ShipLists.pdb
+E:\Project\ShipLists.UI\bin\Debug\ShipLists.exe.config
+E:\Project\ShipLists.UI\obj\Debug\ShipLists.exe
+E:\Project\ShipLists.UI\obj\Debug\ShipLists.pdb
