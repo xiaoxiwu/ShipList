@@ -58,9 +58,17 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\ShipLists.Common\ShipLists.Common.csproj">
+      <Project>{d82b6604-30a3-4d55-85ee-4db79cd72b56}</Project>
+      <Name>ShipLists.Common</Name>
+    </ProjectReference>
     <ProjectReference Include="..\ShipLists.DataAccess\ShipLists.DataAccess.csproj">
       <Project>{88905685-50dd-47f4-984e-0b8adb61384f}</Project>
       <Name>ShipLists.DataAccess</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ShipLists.Model\ShipLists.Model.csproj">
+      <Project>{e68ab35d-d811-4389-b06a-43cd04fa404a}</Project>
+      <Name>ShipLists.Model</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
