@@ -13,10 +13,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShipLists.Model", "ShipList
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShipLists.Common", "ShipLists.Common\ShipLists.Common.csproj", "{D82B6604-30A3-4D55-85EE-4DB79CD72B56}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShipLists.IDataAccess", "ShipLists.IDataAccess\ShipLists.IDataAccess.csproj", "{F6EA5587-E241-4740-B400-22ECE177027E}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShipLists.IBusiness", "ShipLists.IBusiness\ShipLists.IBusiness.csproj", "{7D1F1F66-95EB-448B-AAED-6D9EBB7E8100}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "DBScript", "DBScript", "{15D2A898-4074-4150-BBB7-A9A277658E8F}"
 	ProjectSection(SolutionItems) = preProject
 		Readme.txt = Readme.txt
@@ -50,14 +46,6 @@ Global
 		{D82B6604-30A3-4D55-85EE-4DB79CD72B56}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D82B6604-30A3-4D55-85EE-4DB79CD72B56}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D82B6604-30A3-4D55-85EE-4DB79CD72B56}.Release|Any CPU.Build.0 = Release|Any CPU
-		{F6EA5587-E241-4740-B400-22ECE177027E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{F6EA5587-E241-4740-B400-22ECE177027E}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{F6EA5587-E241-4740-B400-22ECE177027E}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{F6EA5587-E241-4740-B400-22ECE177027E}.Release|Any CPU.Build.0 = Release|Any CPU
-		{7D1F1F66-95EB-448B-AAED-6D9EBB7E8100}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{7D1F1F66-95EB-448B-AAED-6D9EBB7E8100}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{7D1F1F66-95EB-448B-AAED-6D9EBB7E8100}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{7D1F1F66-95EB-448B-AAED-6D9EBB7E8100}.Release|Any CPU.Build.0 = Release|Any CPU
 		{2962DF42-5482-4689-9CB3-C77692B71623}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{2962DF42-5482-4689-9CB3-C77692B71623}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2962DF42-5482-4689-9CB3-C77692B71623}.Release|Any CPU.ActiveCfg = Release|Any CPU

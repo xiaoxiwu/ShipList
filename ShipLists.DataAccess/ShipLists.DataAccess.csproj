@@ -53,10 +53,6 @@
       <Project>{d82b6604-30a3-4d55-85ee-4db79cd72b56}</Project>
       <Name>ShipLists.Common</Name>
     </ProjectReference>
-    <ProjectReference Include="..\ShipLists.IDataAccess\ShipLists.IDataAccess.csproj">
-      <Project>{f6ea5587-e241-4740-b400-22ece177027e}</Project>
-      <Name>ShipLists.IDataAccess</Name>
-    </ProjectReference>
     <ProjectReference Include="..\ShipLists.Model\ShipLists.Model.csproj">
       <Project>{e68ab35d-d811-4389-b06a-43cd04fa404a}</Project>
       <Name>ShipLists.Model</Name>
