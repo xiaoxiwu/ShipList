@@ -7,42 +7,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using ShipLists.DataAccess;
-using ShipLists.Model;
-using System.Configuration;
-using System.Reflection;
-using ShipLists.Common;
 
-namespace ShipLists.UI
+namespace ShipLists
 {
-    public partial class Form1 : Form
+    public partial class MainForm : Form
     {
-        public Form1()
+        public MainForm()
         {
             InitializeComponent();
-        }
-
-        private void button1_Click(object sender, EventArgs e)
-        {
-            //string prName = "prGetUsers";
-            Dictionary<string, Object> inParams = new Dictionary<string, object>();
-            Dictionary<string, Object> outParams = new Dictionary<string, object>();
-
-            //DataSet ds = BaseDAL.ExecuteQueryProcedure(prName, inParams, outParams);
-           // DataSet ds1 = BaseDAL.ExecuteQuery(prName, inParams);
-          
-            //List<User> list = BaseDAL.ExecuteQueryProcedure<User>(prName,inParams,u.GetType());
-
-
-            Type type = ClassType.GetType("User");
-            inParams.Add("UserId", 4);
-            inParams.Add("UserName", "张三");
-            inParams.Add("Sex", "1");
-            outParams.Add("MSG", string.Empty);
-            string msg=string.Empty;
-            int result=BaseDAL.ExecuteNonQueryProcedure("prInsertUser", inParams, outParams, ref msg);
-
-          
+            this.treeView1.ExpandAll();
         }
     }
 }
