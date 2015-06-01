@@ -15,7 +15,7 @@ namespace ShipLists
         public MainForm()
         {
             InitializeComponent();
-            this.treeView1.ExpandAll();
+            this.treeView1.ExpandAll();//展开全部
         }
     }
 }
