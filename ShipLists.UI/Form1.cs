@@ -36,8 +36,8 @@ namespace ShipLists.UI
 
             Type type = ClassType.GetType("User");
             inParams.Add("UserId", 4);
-            inParams.Add("UserName", "laowang");
-            inParams.Add("Sex", "2");
+            inParams.Add("UserName", "张三");
+            inParams.Add("Sex", "1");
             outParams.Add("MSG", string.Empty);
             string msg=string.Empty;
             int result=BaseDAL.ExecuteNonQueryProcedure("prInsertUser", inParams, outParams, ref msg);
