@@ -37,8 +37,12 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Configuration.Install" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data.Entity" />
+    <Reference Include="System.Management" />
+    <Reference Include="System.Transactions" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -69,6 +73,9 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -80,11 +87,6 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config">
-      <SubType>Designer</SubType>
-    </None>
-  </ItemGroup>
-  <ItemGroup>
     <ProjectReference Include="..\ShipLists.Business\ShipLists.Business.csproj">
       <Project>{afe9944d-2a80-4a4e-b7d9-dbd083a569a1}</Project>
       <Name>ShipLists.Business</Name>
@@ -92,6 +94,10 @@
     <ProjectReference Include="..\ShipLists.Common\ShipLists.Common.csproj">
       <Project>{d82b6604-30a3-4d55-85ee-4db79cd72b56}</Project>
       <Name>ShipLists.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ShipLists.DataAccess\ShipLists.DataAccess.csproj">
+      <Project>{88905685-50dd-47f4-984e-0b8adb61384f}</Project>
+      <Name>ShipLists.DataAccess</Name>
     </ProjectReference>
     <ProjectReference Include="..\ShipLists.IBusiness\ShipLists.IBusiness.csproj">
       <Project>{7d1f1f66-95eb-448b-aaed-6d9ebb7e8100}</Project>

@@ -21,9 +21,9 @@ namespace ShipLists.DataAccess
         public static int ExecuteNoneQuery(String cmdText, Dictionary<string, Object> inParms)
         {
             int result = 0;
-            using (DbConnection conn = ConnectionFactory.GetConnectionFactoryInstance().GetConnection())
+            using (MySqlConnection conn = ConnectionFactory.GetConnectionFactoryInstance().GetConnection())
             {
-                using (DbCommand cmd = new MySqlCommand())
+                using (MySqlCommand cmd = new MySqlCommand())
                 {
                     cmd.Connection = conn;
                     cmd.CommandText = cmdText;
@@ -46,16 +46,16 @@ namespace ShipLists.DataAccess
         public static List<T> ExecuteQuery<T>(String cmdText, Dictionary<string, Object> inParms, Type type)
         {
             List<T> list = new List<T>();
-            using (DbConnection conn = ConnectionFactory.GetConnectionFactoryInstance().GetConnection())
+            using (MySqlConnection conn = ConnectionFactory.GetConnectionFactoryInstance().GetConnection())
             {
-                using (DbCommand cmd = new MySqlCommand())
+                using (MySqlCommand cmd = new MySqlCommand())
                 {
                     cmd.Connection = conn;
                     cmd.CommandText = cmdText;
                     AddInParameters(cmd, inParms);
 
                     cmd.Connection.Open();
-                    DbDataReader dr=cmd.ExecuteReader();
+                    MySqlDataReader dr = cmd.ExecuteReader();
 
                     int cloumns=dr.FieldCount;
                     string cloumnName = string.Empty;
@@ -65,10 +65,10 @@ namespace ShipLists.DataAccess
                         for (int i = 0; i < cloumns; i++)
                         {
                             cloumnName = dr.GetName(i);
-                            type.GetProperty(cloumnName).SetValue(obj,dr.GetValue(i), null);
+                            type.GetProperty(cloumnName).SetValue(obj, dr.GetValue(i).ToString(), null);
                         }
                         list.Add(obj);
-                    }
+                    }                    
                 }
             }
             return list;
@@ -82,9 +82,9 @@ namespace ShipLists.DataAccess
         public static Object ExecuteScalar(String cmdText, Dictionary<string, Object> inParms)
         {
             object result = null;
-            using (DbConnection conn = ConnectionFactory.GetConnectionFactoryInstance().GetConnection())
+            using (MySqlConnection conn = ConnectionFactory.GetConnectionFactoryInstance().GetConnection())
             {
-                using (DbCommand cmd = new MySqlCommand())
+                using (MySqlCommand cmd = new MySqlCommand())
                 {
                     cmd.Connection = conn;
                     cmd.CommandText = cmdText;
@@ -105,22 +105,21 @@ namespace ShipLists.DataAccess
         /// <param name="outPrarms"></param>
         /// <param name="type"></param>
         /// <returns>List<T> </returns>
-        public static List<T> ExecuteQueryProcedure<T>(String cmdText, Dictionary<string, Object> inParms, Dictionary<string, Object> outPrarms, Type type)
+        public static List<T> ExecuteQueryProcedure<T>(String cmdText, Dictionary<string, Object> inParms,Type type)
         {
             List<T> list = new List<T>();
-            using (DbConnection conn = ConnectionFactory.GetConnectionFactoryInstance().GetConnection())
+            using (MySqlConnection conn = ConnectionFactory.GetConnectionFactoryInstance().GetConnection())
             {
-                using (DbCommand cmd = new MySqlCommand())
+                using (MySqlCommand cmd = new MySqlCommand())
                 {
                     cmd.Connection = conn;
                     cmd.CommandText = cmdText;
                     cmd.CommandType = CommandType.StoredProcedure;
 
                     AddInParameters(cmd, inParms);
-                    AddOutParameters(cmd, outPrarms);
                     cmd.Connection.Open();
 
-                    DbDataReader dr = cmd.ExecuteReader();
+                    MySqlDataReader dr = cmd.ExecuteReader();
 
                     int cloumns = dr.FieldCount;
                     string cloumnName = string.Empty;
@@ -130,7 +129,7 @@ namespace ShipLists.DataAccess
                         for (int i = 0; i < cloumns; i++)
                         {
                             cloumnName = dr.GetName(i);
-                            type.GetProperty(cloumnName).SetValue(obj, dr.GetValue(i), null);
+                            type.GetProperty(cloumnName).SetValue(obj, dr.GetValue(i).ToString(), null);
                         }
                         list.Add(obj);
                     }
@@ -138,28 +137,56 @@ namespace ShipLists.DataAccess
             }
             return list;
         }
+       
         /// <summary>
         /// 执行非查询类存储过程
         /// </summary>
         /// <param name="cmdText"></param>
         /// <param name="inParms"></param>
-        /// <param name="outPrarms"></param>
         /// <returns></returns>
-        public static int ExecuteNonQueryProcedure(String cmdText, Dictionary<string, Object> inParms, Dictionary<string, Object> outPrarms)
+        public static int ExecuteNonQueryProcedure(String cmdText, Dictionary<string, Object> inParms)
         {
             int result = 0;
-            using (DbConnection conn = ConnectionFactory.GetConnectionFactoryInstance().GetConnection())
+            using (MySqlConnection conn = ConnectionFactory.GetConnectionFactoryInstance().GetConnection())
             {
-                using (DbCommand cmd = new MySqlCommand())
+                using (MySqlCommand cmd = new MySqlCommand())
                 {
                     cmd.Connection = conn;
                     cmd.CommandText = cmdText;
                     cmd.CommandType = CommandType.StoredProcedure;
                                         
                     AddInParameters(cmd, inParms);
-                    AddOutParameters(cmd,outPrarms);
                     cmd.Connection.Open();
                     result = cmd.ExecuteNonQuery();
+                }
+            }
+            return result;
+        }
+       /// <summary>
+        /// 执行非查询类存储过程
+       /// </summary>
+       /// <param name="cmdText"></param>
+       /// <param name="inParms"></param>
+       /// <param name="outPrarms"></param>
+       /// <param name="msg"></param>
+       /// <returns>受影响的行数</returns>
+        public static int ExecuteNonQueryProcedure(String cmdText, Dictionary<string, Object> inParms, Dictionary<string, Object> outPrarms,ref string msg)
+        {
+            int result = 0;
+            using (MySqlConnection conn = ConnectionFactory.GetConnectionFactoryInstance().GetConnection())
+            {
+                using (MySqlCommand cmd = new MySqlCommand())
+                {
+                    cmd.Connection = conn;
+                    cmd.CommandText = cmdText;
+                    cmd.CommandType = CommandType.StoredProcedure;
+
+                    AddInParameters(cmd, inParms);
+                    AddOutParameters(cmd, outPrarms);
+                    cmd.Connection.Open();
+                    result = cmd.ExecuteNonQuery();
+
+                    msg = cmd.Parameters["MSG"].Value.ToString();
                 }
             }
             return result;
@@ -173,15 +200,16 @@ namespace ShipLists.DataAccess
         public static DataSet ExecuteQuery(String cmdText, Dictionary<string, Object> inParms)
         {
             DataSet ds = new DataSet();
-            using (DbConnection conn = ConnectionFactory.GetConnectionFactoryInstance().GetConnection())
+            using (MySqlConnection conn = ConnectionFactory.GetConnectionFactoryInstance().GetConnection())
             {
-                using (DbCommand cmd = new MySqlCommand())
+                using (MySqlCommand cmd = new MySqlCommand())
                 {
                     cmd.Connection = conn;
                     cmd.CommandText = cmdText;
+                   
                     AddInParameters(cmd, inParms);
 
-                    DbDataAdapter da = new MySqlDataAdapter();
+                    MySqlDataAdapter da = new MySqlDataAdapter();
                     da.SelectCommand = cmd;
 
                     da.Fill(ds);
@@ -194,22 +222,20 @@ namespace ShipLists.DataAccess
         /// </summary>
         /// <param name="cmdText"></param>
         /// <param name="inParms"></param>
-        /// <param name="outPrarms"></param>
         /// <returns>DataSet</returns>
-        public static DataSet ExecuteQueryProcedure(String cmdText, Dictionary<string, Object> inParms, Dictionary<string, Object> outPrarms)
+        public static DataSet ExecuteQueryProcedure(String cmdText, Dictionary<string, Object> inParms)
         {
             DataSet ds = new DataSet();
-            using (DbConnection conn = ConnectionFactory.GetConnectionFactoryInstance().GetConnection())
+            using (MySqlConnection conn = ConnectionFactory.GetConnectionFactoryInstance().GetConnection())
             {
-                using (DbCommand cmd = new MySqlCommand())
+                using (MySqlCommand cmd = new MySqlCommand())
                 {
                     cmd.Connection = conn;
                     cmd.CommandText = cmdText;
+                    cmd.CommandType = CommandType.StoredProcedure;
                     AddInParameters(cmd, inParms);
-                    AddOutParameters(cmd, outPrarms);
 
-                    DbDataAdapter da = new MySqlDataAdapter();
-                    da.SelectCommand = cmd;
+                    MySqlDataAdapter da = new MySqlDataAdapter(cmd);                    
 
                     da.Fill(ds);
                 }
@@ -222,7 +248,7 @@ namespace ShipLists.DataAccess
         /// </summary>
         /// <param name="sqlCmd"></param>
         /// <param name="parms"></param>
-        private static void AddInParameters(DbCommand sqlCmd, Dictionary<string, Object> parms)
+        private static void AddInParameters(MySqlCommand sqlCmd, Dictionary<string, Object> parms)
         {
             if (null != parms && parms.Count > 0)
             {
@@ -238,7 +264,7 @@ namespace ShipLists.DataAccess
         /// </summary>
         /// <param name="sqlCmd"></param>
         /// <param name="parms"></param>
-        private static void AddOutParameters(DbCommand sqlCmd, Dictionary<string, Object> parms)
+        private static void AddOutParameters(MySqlCommand sqlCmd, Dictionary<string, Object> parms)
         {
             if (null != parms && parms.Count > 0)
             {

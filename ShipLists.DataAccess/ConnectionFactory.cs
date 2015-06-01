@@ -6,12 +6,13 @@ using System.Data.Common;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Data;
 
 namespace ShipLists.DataAccess
 {
    public class ConnectionFactory
     {
-       private readonly static string connectionString = ConfigurationManager.AppSettings["MySQL"];
+       private readonly static string connectionString = ConfigurationManager.ConnectionStrings["MySQL"].ConnectionString;
 
        private static ConnectionFactory connFactory = null;
 
@@ -26,7 +27,7 @@ namespace ShipLists.DataAccess
        ///  获取连接对象 
        /// </summary>
        /// <returns></returns>
-       public DbConnection GetConnection()
+       public MySqlConnection GetConnection()
        {
           return new MySqlConnection(connectionString);
        }
